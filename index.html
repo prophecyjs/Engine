@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="build/engine.min.js"></script>
+</head>
+<body>
+<script>
+
+    prophecy.loader.loadManifest('assets/files.json').on('on.complete', function(resources) {
+        console.log('got it');
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "files": [{
+    "src": "assets/img/test.jpg",
+    "type": "image",
+    "size": 4.096,
+    "tag": "test"
+  }]
+}

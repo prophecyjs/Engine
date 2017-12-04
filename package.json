@@ -2,13 +2,23 @@
   "name": "prophecyjs-engine",
   "version": "1.0.0",
   "description": "Game engine for Prophecy",
-  "main": "index.js",
+  "main": "src/boot.js",
+  "directories": {
+    "test": "test",
+    "src": "src",
+    "build": "build"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha || true",
+    "dev": "npm run development",
+    "prod": "npm run production",
+    "development": "cross-env NODE_ENV=development NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=webpack.config.js",
+    "watch": "cross-env NODE_ENV=development NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=webpack.config.js",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js  --no-progress --hide-modules --config=webpack.config.js"
   },
   "author": "Johnny Mast <mastjohnny.com> (http://johnnymast.io)",
   "license": "MIT",
-  "homepage": "https://github.com/prophecyjs/Loader#readme",
+  "homepage": "https://github.com/prophecyjs/Engine#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-polyfill": "^6.26.0",
@@ -20,5 +30,8 @@
     "cross-env": "^5.0.1",
     "chai": "^4.1.2",
     "mocha": "^4.0.1"
+  },
+  "dependencies": {
+    "prophecyjs-loader": "^1.0.0"
   }
 }

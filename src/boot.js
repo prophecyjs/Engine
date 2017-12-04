@@ -39,4 +39,4 @@ var prophecy = {
 global.prophecy = prophecy;
 
 require('loader/init');
-
+require('geometry/init');

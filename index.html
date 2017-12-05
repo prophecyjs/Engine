@@ -4,13 +4,31 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="build/engine.min.js"></script>
+    <style type="text/css">
+        #canvas {
+            background: black;
+        }
+    </style>
 </head>
 <body>
+<div id="game"></div>
 <script>
 
-    prophecy.loader.loadManifest('assets/files.json').on('on.complete', function(resources) {
-        console.log('got it');
-    });
+    var gamesize = new py.Size(500, 500);
+    var app = new py.App(gamesize, {backgroundColor: '#1099bb'});
+    app.ticker.setFps(60);
+
+    document.getElementById('game').appendChild(app.view);
+
+    var container = new py.Container();
+    app.stage.addChild(container);
+    app.render();
+
+    // Center on the screen
+    container.x = (app.renderer.width - container.width) / 2;
+    container.y = (app.renderer.height - container.height) / 2;
+
+
 </script>
 </body>
 </html>

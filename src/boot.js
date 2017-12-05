@@ -29,14 +29,12 @@ if (typeof Object.assign != 'function') {
 }
 
 
-// let prophecy =
+var py = {};
 
-var prophecy = {
-
-
-};
-
-global.prophecy = prophecy;
+global.py = py;
 
 require('loader/init');
 require('geometry/init');
+require('core/display/init');
+require('core/app');
+

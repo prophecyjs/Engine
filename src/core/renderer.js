@@ -1,3 +1,5 @@
+import CanvasSpriterRenderer from './sprite/canvas/canvasspriterenderer';
+
 class Renderer {
     constructor(size, options) {
         var canvas = document.createElement('canvas');
@@ -5,18 +7,22 @@ class Renderer {
         canvas.height = size.height;
         this.width = size.width;
         this.height = size.height;
-        this.ctx = canvas.getContext('2d');
+        this.context = canvas.getContext('2d');
         this.view = canvas;
 
         Object.assign(this.view.style, options);
+        this.plugins=[];
+        this.plugins['sprite'] = new CanvasSpriterRenderer(this);
     }
 
     render(displayobject) {
-        console.log(displayobject);
+        this.Clear();
+        displayobject.renderCanvas(this);
     }
 
     Clear() {
-        this.ctx.clearRect(0, 0, this.width, this.height);
+        this.context.clearRect(0, 0, this.width, this.height);
     }
 }
+
 module.exports = Renderer;

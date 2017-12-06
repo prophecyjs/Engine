@@ -36,5 +36,6 @@ global.py = py;
 require('loader/init');
 require('geometry/init');
 require('core/display/init');
+require('core/sprite/init');
 require('core/app');
 

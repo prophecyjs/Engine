@@ -12,7 +12,7 @@ class App {
         }, options);
 
         this._renderer = new Renderer(size, options); // should be auto desiding ..
-        this._ticker = new Ticker();
+        this._ticker = new Ticker(this);
         this._stage = new Container();
 
         this._stage.parent = this;

@@ -26,13 +26,11 @@
 
 
     var image = new py.Sprite('/assets/img/bunny.png');
-    image.x = 10;
-    image.y = 10;
+    image.x = gamesize.width/2;
+    image.y = gamesize.height/2;
     image.transform.rotation = 0;
-    image.transform.scale.x = 10;
-    image.transform.scale.y = 10;
 
-
+  //  image.transform.scale = 10; /* Scale 1 to 100 */
     container.addChild(image);
 
     /**

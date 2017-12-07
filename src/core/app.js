@@ -1,5 +1,5 @@
 import Renderer from 'core/renderer';
-import Ticker from 'core/ticker';
+import Ticker from 'core/ticker/ticker';
 import Container from 'core/display/container';
 
 

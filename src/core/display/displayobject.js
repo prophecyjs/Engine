@@ -1,3 +1,5 @@
+import Transform from './Transform';
+
 class DisplayObject {
     constructor() {
         this.alpha = 1;
@@ -5,6 +7,7 @@ class DisplayObject {
         this.renderable = true;
         this.parent = null;
         this.filterArea = null;
+        this.transform = new Transform();
 
         this.x = 0;
         this.y = 0;

@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="build/engine.min.js"></script>
-    <script src="build/fps.js"></script>
     <style type="text/css">
-        #canvas {
-            background: black;
+        body {
+            background: darkgray;
         }
     </style>
 </head>
@@ -26,29 +25,23 @@
     app.stage.addChild(container);
 
 
-    var image = new py.Sprite('/assets/img/test.jpg');
-    image.x = 20;
-    image.y = 20;
+    var image = new py.Sprite('/assets/img/bunny.png');
+    image.x = 10;
+    image.y = 10;
+    image.transform.rotation = 0;
+    image.transform.scale.x = 10;
+    image.transform.scale.y = 10;
+
 
     container.addChild(image);
-
-    console.log(container);
 
     /**
      * Ticker.add will trigger app.render();
      */
-    app.ticker.add(function() {
-
-        image.x += .5;
-        if (image.x > gamesize.width) {
-            image.x = 0;
-        }
-
-    //    fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps());
+    app.ticker.add(function () {
+        image.transform.rotation += 1;
+        // fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps());
     });
-
-    app.ticker.start();
-
 
 </script>
 </body>

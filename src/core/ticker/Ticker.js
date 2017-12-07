@@ -14,6 +14,7 @@ class Ticker {
         this.dt = 0;
 
         this.requestId = 0;
+        this.functions = [];
 
         this.tick = () => {
             if (this.started) {
@@ -23,23 +24,22 @@ class Ticker {
 
                 while (this.dt > this.step) {
                     this.dt = this.dt - this.step;
-                    this.update(this.step);
+                    this.update(this.dt);
                     this.actualfps = 1000 / (this.now - this.last);
-
                 }
-
 
                 this.parent.render();
                 this.last = this.now;
-
 
                 this.requestId = requestAnimationFrame(this.tick); // request the next frame
             }
         }
     }
 
-    update() {
-        this.fn();
+    update(dt) {
+        for (var index in this.functions) {
+            this.functions[index](dt);
+        }
     }
 
     setTargetFps(fps) {
@@ -52,13 +52,16 @@ class Ticker {
     }
 
     add(fn) {
-        this.fn = fn;
+        this.functions.push(fn);
         this.start();
+        return this;
     }
 
     start() {
-        this.started = true;
-        this.tick();
+        if (this.started == false) {
+            this.started = true;
+            this.tick();
+        }
     }
 
     stop() {

@@ -5,12 +5,15 @@ class CanvasSpriterRenderer {
 
     render(sprite) {
 
+        if (! sprite.texture.isLoaded) {
+            return;
+        }
+
         this.renderer.context.save();
 
         if (sprite.transform.scale.factor > 0) {
             this.renderer.context.scale(sprite.transform.scale.x, sprite.transform.scale.y);
         }
-
 
         // TODO OOP the hell out of this below
         if (sprite.transform.rotation) {

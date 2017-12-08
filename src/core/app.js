@@ -2,7 +2,6 @@ import Renderer from 'core/renderer';
 import Ticker from 'core/ticker/ticker';
 import Container from 'core/display/container';
 
-
 class App {
     constructor(size, options) {
         this.size = size;

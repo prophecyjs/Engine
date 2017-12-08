@@ -8,5 +8,3 @@ loader.installPlugin(script);
 Object.assign(py, {
     loader: loader,
 });
-
-// module.exports = Color;

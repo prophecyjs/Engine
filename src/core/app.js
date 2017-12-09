@@ -1,6 +1,6 @@
 import Renderer from 'core/renderer';
 import Ticker from 'core/ticker/ticker';
-import Container from 'core/display/container';
+import Container from 'core/display/Container';
 
 class App {
     constructor(size, options) {

@@ -1,14 +1,19 @@
+import AnchorPoint from '../display/AnchorPoint';
 import Container from '../display/Container';
 import Texture from '../textures/Texture';
 
 class Sprite extends Container {
-    constructor(src) {
+    constructor(data) {
         super();
 
-        this.texture = new Texture(src);
-        this.pluginName = 'sprite';
+        this.anchor = new AnchorPoint();
 
-        console.log('done')
+        if (typeof data == 'object') {
+            this.texture = texture;
+        } else {
+            this.texture = new Texture(data);
+        }
+        this.pluginName = 'sprite';
     }
 
     _renderCanvas(renderer) {

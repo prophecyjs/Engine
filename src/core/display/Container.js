@@ -1,4 +1,4 @@
-import DisplayObject from './displayobject';
+import DisplayObject from './Displayobject';
 
 class Container extends DisplayObject {
     constructor() {

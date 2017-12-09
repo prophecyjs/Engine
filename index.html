@@ -24,23 +24,27 @@
     var container = new py.Container();
     app.stage.addChild(container);
 
+    var texture = py.Texture.fromImage('assets/img/bunny.png');
 
-    var image = new py.Sprite('/assets/img/bunny.png');
-
-
-    image.x = gamesize.width/2;
-    image.y = gamesize.height/2;
-    image.transform.rotation = 0;
-
-    container.addChild(image);
+    // Create a 5x5 grid of bunnies
+    for (var i = 0; i < 25; i++) {
+        var bunny = new py.Sprite(texture);
+   //     bunny.anchor.set(0.5);
+        bunny.x = (i % 5) * 40;
+        bunny.y = Math.floor(i / 5) * 40;
+        container.addChild(bunny);
+    }
 
     /**
      * Ticker.add will trigger app.render();
      */
     app.ticker.add(function () {
-        image.transform.rotation += 1;
+      //  image.transform.rotation += 1;
         // fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps());
     });
+
+    container.x = (app.renderer.width - container.width) / 2;
+    container.y = (app.renderer.height - container.height) / 2;
 
 </script>
 </body>

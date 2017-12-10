@@ -8,12 +8,28 @@ class Sprite extends Container {
 
         this.anchor = new AnchorPoint();
 
+        this.x = 0;
+        this.y = 0;
+        this.width = 0;
+        this.height = 0;
+        this.srcX = -1;
+        this.srcY = -1;
+        this.srcWidth = -1;
+        this.srcHeight = -1;
+        this.realHeight = 0;
+        this.realWidth = 0;
+
         if (typeof data == 'object') {
-            this.texture = texture;
+            this.texture = data;
         } else {
             this.texture = new Texture(data);
         }
+
         this.pluginName = 'sprite';
+    }
+
+    isSubSprite() {
+        return (this.srcX !== -1 && this.srcY !== -1 && this.srcWidth !== -1 && this.srcHeight !== -1);
     }
 
     _renderCanvas(renderer) {
@@ -21,8 +37,12 @@ class Sprite extends Container {
     }
 
     _onTextureUpdate(texture) {
-        this.width = texture.width;
-        this.height = texture.height;
+        if (!this.isSubSprite()) {
+            this.width = texture.width;
+            this.height = texture.height;
+        }
+        this.realWidth = texture.width;
+        this.realHeight = texture.height;
     }
 
     get texture() {
@@ -39,7 +59,7 @@ class Sprite extends Container {
         if (value) {
             // wait for the texture to load
             if (value.isLoaded) {
-                this._onTextureUpdate();
+                this._onTextureUpdate(this._texture);
             }
             else {
                 value.once('update', this._onTextureUpdate, this);

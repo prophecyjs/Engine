@@ -1,6 +1,6 @@
 import Renderer from 'core/renderer';
-import Ticker from 'core/ticker/ticker';
-import Container from 'core/display/Container';
+import { shared, Ticker } from './ticker';
+import Container from '../core/display/Container';
 
 class App {
     constructor(size, options) {
@@ -15,6 +15,7 @@ class App {
         this._stage = new Container();
 
         this._stage.parent = this;
+        this._ticker.autoStart = true;
 
         if (options.autoStart) {
             this.start();

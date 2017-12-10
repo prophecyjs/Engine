@@ -29,7 +29,9 @@ if (typeof Object.assign != 'function') {
 }
 
 
-var py = {};
+var py = {
+    extras: require('./extra')
+};
 
 global.py = py;
 
@@ -39,4 +41,6 @@ require('core/display/init');
 require('core/textures/init');
 require('core/sprite/init');
 require('core/app');
+
+//require('extra/init');
 

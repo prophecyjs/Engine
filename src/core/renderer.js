@@ -1,4 +1,4 @@
-import CanvasSpriterRenderer from './sprite/canvas/canvasspriterenderer';
+import CanvasSpriterRenderer from './sprite/canvas/CanvasSpriteRenderer';
 
 class Renderer {
     constructor(size, options) {

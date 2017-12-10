@@ -22,25 +22,36 @@
     document.getElementById('game').appendChild(app.view);
 
     var container = new py.Container();
+
+    coins = new py.SpriteSheet('/assets/img/coin-sprite-animation.png');
+    animator = new py.extras.SpriteSheetAnimation('/assets/img/coin-sprite-animation.png');
+    animator.speed = 30;
+    animator.x = 100;
+    animator.y = 100;
+
+
+    coins.onload =function() {
+        for (let x = 0; x < coins.width; x+=100) {
+            let frame = coins.getSprite(x, 0, 100, 100);
+            animator.addFrame(frame);
+        }
+        animator.play();
+    }
+
+    setTimeout(() => {
+        // animator.pauze();
+    }, 5000);
+
+    container.addChild(animator);
     app.stage.addChild(container);
 
-    var texture = py.Texture.fromImage('assets/img/bunny.png');
-
-    // Create a 5x5 grid of bunnies
-    for (var i = 0; i < 25; i++) {
-        var bunny = new py.Sprite(texture);
-   //     bunny.anchor.set(0.5);
-        bunny.x = (i % 5) * 40;
-        bunny.y = Math.floor(i / 5) * 40;
-        container.addChild(bunny);
-    }
 
     /**
      * Ticker.add will trigger app.render();
      */
     app.ticker.add(function () {
       //  image.transform.rotation += 1;
-        // fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps());
+        fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps());
     });
 
     container.x = (app.renderer.width - container.width) / 2;

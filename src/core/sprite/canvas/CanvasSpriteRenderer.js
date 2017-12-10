@@ -6,6 +6,7 @@ class CanvasSpriterRenderer {
     render(sprite) {
 
         if (! sprite.texture.isLoaded) {
+            console.log('is not loaded');
             return;
         }
 
@@ -26,14 +27,34 @@ class CanvasSpriterRenderer {
             this.renderer.context.translate(-(sprite.x + 0.5 * sprite.width), -(sprite.x + 0.5 * sprite.height));
         }
 
+        if (sprite.isSubSprite()) {
+            this.renderer.context.drawImage(
+                sprite.texture.raw,
+                sprite.srcX,
+                sprite.srcY,
+                sprite.srcWidth,
+                sprite.srcHeight,
+                sprite.x,
+                sprite.y,
+                sprite.width,
+                sprite.height,
+            );
+        } else {
+            this.renderer.context.drawImage(
+                sprite.texture.raw,
+                sprite.x,
+                sprite.y,
+                sprite.width,
+                sprite.height,
+            );
+        }
 
-        this.renderer.context.drawImage(
-            sprite.texture.raw,
-            sprite.x,
-            sprite.y,
-            sprite.width,
-            sprite.height
-        );
+        var plot = (x,y) => {
+            this.renderer.context.fillRect(x, this.renderer.height-y, 5, 5);
+        }
+
+        plot(100,50);
+        plot(200,100);
 
 
         this.renderer.context.restore();

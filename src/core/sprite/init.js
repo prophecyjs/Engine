@@ -1,3 +1,4 @@
 Object.assign(py, {
-    Sprite: require('./sprite'),
+    Sprite: require('./Sprite'),
+    SpriteSheet: require('./SpriteSheet')
 });

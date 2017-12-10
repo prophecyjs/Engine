@@ -16,6 +16,16 @@ class Ticker {
         this.requestId = 0;
         this.functions = [];
 
+        /**
+         * Whether or not this ticker should invoke the method
+         * {@link PIXI.ticker.Ticker#start} automatically
+         * when a listener is added.
+         *
+         * @member {boolean}
+         * @default false
+         */
+        this.autoStart = false;
+
         this.tick = () => {
             if (this.started) {
                 this.now = performance.now();
@@ -28,12 +38,18 @@ class Ticker {
                     this.actualfps = 1000 / (this.now - this.last);
                 }
 
-                this.parent.render();
+                if (this.parent)
+                    this.parent.render();
+
                 this.last = this.now;
 
                 this.requestId = requestAnimationFrame(this.tick); // request the next frame
             }
         }
+    }
+
+    get isRunning() {
+        return (this.requestId);
     }
 
     update(dt) {
@@ -53,7 +69,10 @@ class Ticker {
 
     add(fn) {
         this.functions.push(fn);
-        this.start();
+
+        if (this.autoStart == true) {
+            this.start();
+        }
         return this;
     }
 

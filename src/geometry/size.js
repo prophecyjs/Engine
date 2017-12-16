@@ -1,7 +1,7 @@
 class Size {
-    constructor(w, h) {
-        this.width = w;
-        this.height = h;
-    }
+  constructor (w, h) {
+    this.width = w
+    this.height = h
+  }
 }
-module.exports = Size;
+module.exports = Size

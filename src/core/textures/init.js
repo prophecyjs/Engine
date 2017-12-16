@@ -1,4 +1,4 @@
 
 Object.assign(py, {
-    Texture: require('./Texture'),
-});
+  Texture: require('./Texture')
+})

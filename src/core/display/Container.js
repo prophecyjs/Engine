@@ -1,38 +1,46 @@
-import DisplayObject from './Displayobject';
+import DisplayObject from './Displayobject'
 
 class Container extends DisplayObject {
-    constructor() {
-        super();
-        this._parent = null;
-        this.children = [];
+  constructor () {
+    super()
+    this._parent = null
+    this.children = []
+  }
+
+  get parent () {
+    return this._parerent
+  }
+
+  set parent (parent) {
+    this._parent = parent
+  }
+
+  addChild (child) {
+    if (!child) {
+      return false
     }
 
-    get parent() {
-        return this._parerent;
-    }
+        // if (this.hasChild(child)) {
+        //     return false;
+        // }
 
-    set parent(parent) {
-        this._parent = parent;
-    }
+    child._parent = this
+    this.children.push(child)
+  }
 
-    addChild(child) {
-        if (!child) {
-            return false;
-        }
+  hasChild (child) {
+    return (this.children.indexOf(child) > -1)
+  }
 
-        child._parent = this;
-        this.children.push(child);
-    }
-
-    _renderCanvas(renderer) {
+  _renderCanvas (renderer) {
         // this is where content itself gets rendered...
-    }
+  }
 
-    renderCanvas(renderer) {
-        //if not visible or the alpha is 0 then no need to render this
-        if (!this.visible || this.worldAlpha <= 0 || !this.renderable) {
-            return;
-        }
+  renderCanvas (renderer) {
+        // if not visible or the alpha is 0 then no need to render this
+    if (!this.visible || this.worldAlpha <= 0 || !this.renderable) {
+      return
+    }
 
         //
         // if (this._mask)
@@ -40,17 +48,16 @@ class Container extends DisplayObject {
         //     renderer.maskManager.pushMask(this._mask);
         // }
 
-        this._renderCanvas(renderer);
-        for (let i = 0, j = this.children.length; i < j; ++i) {
-            this.children[i].renderCanvas(renderer);
-        }
+    this._renderCanvas(renderer)
+    for (let i = 0, j = this.children.length; i < j; ++i) {
+      this.children[i].renderCanvas(renderer)
+    }
 
         // if (this._mask)
         // {
         //     renderer.maskManager.popMask(renderer);
         // }
-    }
-
+  }
 }
 
-module.exports = Container;
+module.exports = Container

@@ -7,10 +7,10 @@
  * @memberof py
  */
 class AnchorPoint {
-    constructor() {
-        this._x = 0;
-        this._y = 0;
-    }
+  constructor () {
+    this._x = 0
+    this._y = 0
+  }
 
     /**
      * Sets the point to a new x and y position.
@@ -19,46 +19,45 @@ class AnchorPoint {
      * @param {number} [x=0] - position of the point on the x axis
      * @param {number} [y=0] - position of the point on the y axis
      */
-    set(x, y) {
-        const _x = x || 0;
-        const _y = y || ((y !== 0) ? _x : 0);
+  set (x, y) {
+    const _x = x || 0
+    const _y = y || ((y !== 0) ? _x : 0)
 
         /**
          * if this._x != 0 || this._y !== _y
          */
-        if (this._x !== _x || this._y !== _y) {
-            this._x = _x;
-            this._y = _y;
-            this.cb.call(this.scope);
-        }
+    if (this._x !== _x || this._y !== _y) {
+      this._x = _x
+      this._y = _y
+      this.cb.call(this.scope)
     }
+  }
 
     /**
      * The center x position of the object.
      *
      * @member {number}
      */
-    get x() {
-        return this._x;
-    }
+  get x () {
+    return this._x
+  }
 
     /**
      * The center y position of the object.
      *
      * @member {number}
      */
-    get y() {
-        return this._y;
-    }
+  get y () {
+    return this._y
+  }
 
-    set x(x) {
-        this._x = x;
-    }
+  set x (x) {
+    this._x = x
+  }
 
-
-    set y(y) {
-        this._y = y;
-    }
+  set y (y) {
+    this._y = y
+  }
 }
 
-module.exports = AnchorPoint;
+module.exports = AnchorPoint

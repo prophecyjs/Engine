@@ -1,6 +1,6 @@
 let Point = function (x, y) {
-    this.x = x || 0;
-    this.y = y || 0;
-};
+  this.x = x || 0
+  this.y = y || 0
+}
 
-module.exports = Point;
+module.exports = Point

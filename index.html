@@ -24,38 +24,33 @@
     var container = new py.Container();
 
     coins = new py.SpriteSheet('/assets/img/coin-sprite-animation.png');
-    animator = new py.extras.SpriteSheetAnimation('/assets/img/coin-sprite-animation.png');
-    animator.speed = 30;
-    animator.x = 100;
-    animator.y = 100;
+    btfont = new py.extras.BitmapFont('/assets/fonts/Arial.fnt');
+    btfont.spacewidth = 10;
 
-
-    coins.onload =function() {
-        for (let x = 0; x < coins.width; x+=100) {
-            let frame = coins.getSprite(x, 0, 100, 100);
-            animator.addFrame(frame);
-        }
-        animator.play();
-    }
-
-    setTimeout(() => {
-        // animator.pauze();
-    }, 5000);
-
-    container.addChild(animator);
+    container.addChild(btfont);
     app.stage.addChild(container);
 
+
+    // btfont.onload = () => {
+    //     btfont.write('[NL] Loco vs World', 20, 20);
+    //     console.log('WRITE');
+    // }
+
+    var sprite = new py.Sprite('/assets/img/bunny.png')
+    sprite.x = 200;
+    sprite.y = 200;;
+    container.addChild(sprite);
 
     /**
      * Ticker.add will trigger app.render();
      */
-    app.ticker.add(function () {
-      //  image.transform.rotation += 1;
-        fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps());
+    app.ticker.add(() => {
+
+         fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps());
     });
 
-    container.x = (app.renderer.width - container.width) / 2;
-    container.y = (app.renderer.height - container.height) / 2;
+    // container.x = (app.renderer.width - container.width) / 2;
+    // container.y = (app.renderer.height - container.height) / 2;
 
 </script>
 </body>

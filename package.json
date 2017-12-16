@@ -38,7 +38,7 @@
     "eventemitter3": "^3.0.0",
     "gitbook": "^3.2.3",
     "gitbook-plugin-theme-api": "^1.1.2",
-    "prophecyjs-loader": "^1.0.0",
+    "prophecyjs-loader": "file:/Users/johnny/PhpstormProjects/Loader",
     "rimraf": "^2.6.2"
   }
 }

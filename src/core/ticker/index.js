@@ -1,7 +1,7 @@
-import Ticker from './Ticker';
+import Ticker from './Ticker'
 
-const shared = new Ticker();
+const shared = new Ticker()
 
-shared.autoStart = true;
+shared.autoStart = true
 
 export { shared, Ticker }

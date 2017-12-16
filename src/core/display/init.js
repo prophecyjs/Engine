@@ -1,3 +1,3 @@
 Object.assign(py, {
-    Container: require('./Container'),
-});
+  Container: require('./Container')
+})

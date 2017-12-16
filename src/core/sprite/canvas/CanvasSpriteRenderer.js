@@ -15,7 +15,7 @@ class CanvasSpriterRenderer {
       this.renderer.context.scale(sprite.transform.scale.x, sprite.transform.scale.y)
     }
 
-        // TODO OOP the hell out of this below
+    // TODO OOP the hell out of this below
     if (sprite.transform.rotation) {
       if (sprite.transform.scale.factor > 0) {
         this.renderer.context.translate((sprite.x + 0.5 * sprite.width) / sprite.transform.scale.factor, (sprite.x + 0.5 * sprite.height) / sprite.transform.scale.factor)
@@ -28,24 +28,24 @@ class CanvasSpriterRenderer {
 
     if (sprite.isSubSprite()) {
       this.renderer.context.drawImage(
-                sprite.texture.raw,
-                sprite.srcX,
-                sprite.srcY,
-                sprite.srcWidth,
-                sprite.srcHeight,
-                sprite.x,
-                sprite.y,
-                sprite.width,
-                sprite.height
-            )
+        sprite.texture.raw,
+        sprite.srcX,
+        sprite.srcY,
+        sprite.srcWidth,
+        sprite.srcHeight,
+        sprite.x,
+        sprite.y,
+        sprite.width,
+        sprite.height
+      )
     } else {
       this.renderer.context.drawImage(
-                sprite.texture.raw,
-                sprite.x,
-                sprite.y,
-                sprite.width,
-                sprite.height
-            )
+        sprite.texture.raw,
+        sprite.x,
+        sprite.y,
+        sprite.width,
+        sprite.height
+      )
     }
 
     var plot = (x, y) => {

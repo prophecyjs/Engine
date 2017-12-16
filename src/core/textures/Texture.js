@@ -1,5 +1,5 @@
-
 import EventEmitter from 'eventemitter3'
+
 export const TextureCache = Object.create(null)
 
 class Texture extends EventEmitter {
@@ -24,10 +24,10 @@ class Texture extends EventEmitter {
     }
   }
 
-    /**
-     * @static
-     * @param src
-     */
+  /**
+   * @static
+   * @param src
+   */
   static fromImage (src) {
     let texture = TextureCache[src] || null
 
@@ -42,4 +42,5 @@ class Texture extends EventEmitter {
     TextureCache[key] = texture
   }
 }
+
 module.exports = Texture

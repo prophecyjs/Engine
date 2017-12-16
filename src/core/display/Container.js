@@ -20,9 +20,9 @@ class Container extends DisplayObject {
       return false
     }
 
-        // if (this.hasChild(child)) {
-        //     return false;
-        // }
+    // if (this.hasChild(child)) {
+    //     return false;
+    // }
 
     child._parent = this
     this.children.push(child)
@@ -33,30 +33,30 @@ class Container extends DisplayObject {
   }
 
   _renderCanvas (renderer) {
-        // this is where content itself gets rendered...
+    // this is where content itself gets rendered...
   }
 
   renderCanvas (renderer) {
-        // if not visible or the alpha is 0 then no need to render this
+    // if not visible or the alpha is 0 then no need to render this
     if (!this.visible || this.worldAlpha <= 0 || !this.renderable) {
       return
     }
 
-        //
-        // if (this._mask)
-        // {
-        //     renderer.maskManager.pushMask(this._mask);
-        // }
+    //
+    // if (this._mask)
+    // {
+    //     renderer.maskManager.pushMask(this._mask);
+    // }
 
     this._renderCanvas(renderer)
     for (let i = 0, j = this.children.length; i < j; ++i) {
       this.children[i].renderCanvas(renderer)
     }
 
-        // if (this._mask)
-        // {
-        //     renderer.maskManager.popMask(renderer);
-        // }
+    // if (this._mask)
+    // {
+    //     renderer.maskManager.popMask(renderer);
+    // }
   }
 }
 

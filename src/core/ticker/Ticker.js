@@ -16,14 +16,14 @@ class Ticker {
     this.requestId = 0
     this.functions = []
 
-        /**
-         * Whether or not this ticker should invoke the method
-         * {@link PIXI.ticker.Ticker#start} automatically
-         * when a listener is added.
-         *
-         * @member {boolean}
-         * @default false
-         */
+    /**
+     * Whether or not this ticker should invoke the method
+     * {@link PIXI.ticker.Ticker#start} automatically
+     * when a listener is added.
+     *
+     * @member {boolean}
+     * @default false
+     */
     this.autoStart = false
 
     this.tick = () => {

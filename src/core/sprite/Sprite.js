@@ -57,7 +57,7 @@ class Sprite extends Container {
     this._texture = value
 
     if (value) {
-            // wait for the texture to load
+      // wait for the texture to load
       if (value.isLoaded) {
         this._onTextureUpdate(this._texture)
       } else {

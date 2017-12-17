@@ -22,30 +22,21 @@
   document.getElementById('game').appendChild(app.view)
 
   var container = new py.Container()
+  var graphics = new py.Graphics();
 
-  coins = new py.SpriteSheet('/assets/img/coin-sprite-animation.png')
-  btfont = new py.extras.BitmapFont('/assets/fonts/Arial.fnt')
-  btfont.spacewidth = 10
+  // set a fill and line style
+  graphics.beginFill(0xFF3300);
+  graphics.lineStyle(4, 0xffd900, 1);
 
-  container.addChild(btfont)
-  app.stage.addChild(container)
+  // draw a shape
+  graphics.moveTo(50,50);
+  graphics.lineTo(250, 50);
+  graphics.lineTo(100, 100);
+  graphics.lineTo(50, 50);
+  graphics.endFill();
 
-  btfont.onload = () => {
-    btfont.write('[NL] Loco vs World', 20, 20)
-    console.log('WRITE')
-  }
 
-  var sprite = new py.Sprite('/assets/img/bunny.png')
-  sprite.x = 200
-  sprite.y = 200
-  sprite.alpha = 0.5;
-
-  var sprite2 = new py.Sprite('/assets/img/bunny.png')
-  sprite2.x = 210
-  sprite2.y = 200
-
-  container.addChild(sprite)
-  container.addChild(sprite2)
+  container.addChild(graphics)
 
   /**
    * Ticker.add will trigger app.render();

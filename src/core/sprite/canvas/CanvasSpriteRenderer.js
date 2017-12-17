@@ -49,13 +49,6 @@ class CanvasSpriterRenderer {
       )
     }
 
-    var plot = (x, y) => {
-      this.renderer.context.fillRect(x, this.renderer.height - y, 5, 5)
-    }
-
-    plot(100, 50)
-    plot(200, 100)
-
     this.renderer.context.restore()
   }
 }

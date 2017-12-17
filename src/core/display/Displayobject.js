@@ -1,5 +1,11 @@
 import Transform from './Transform'
 
+/**
+ * The object class is the parent of all displayable objects in the engine.
+ *
+ * @class
+ * @memberof py
+ */
 class DisplayObject {
   constructor () {
     this.alpha = 1

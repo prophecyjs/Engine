@@ -10,6 +10,7 @@ class CanvasSpriterRenderer {
     }
 
     this.renderer.context.save()
+    this.renderer.context.globalAlpha = sprite.alpha;
 
     if (sprite.transform.scale.factor > 0) {
       this.renderer.context.scale(sprite.transform.scale.x, sprite.transform.scale.y)

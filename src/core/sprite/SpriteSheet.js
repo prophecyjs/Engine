@@ -8,6 +8,7 @@ import Sprite from './Sprite'
  * @memberof py
  */
 class SpriteSheet {
+
   /**
    * Create a new Spritesheet reprecenting a collection of Sprites.
    *
@@ -18,6 +19,10 @@ class SpriteSheet {
     this.texture = new Texture(source)
   }
 
+  /**
+   * The texture function can be overwritten by the caller.
+   * The onload function will be called when the texture is finished loading.
+   */
   onload () {}
 
   _onTextureUpdate (texture) {
@@ -35,6 +40,11 @@ class SpriteSheet {
     return this._texture
   }
 
+  /**
+   * Setter for the texture property.
+   *
+   * @param {Texture} Texture of the SpriteSheet.
+   */
   set texture (value) {
     if (this._texture === value) {
       return

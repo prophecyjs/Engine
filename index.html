@@ -15,42 +15,47 @@
 <div id="fps"></div>
 <script>
 
-    var gamesize = new py.Size(500, 500);
-    var app = new py.App(gamesize, {backgroundColor: '#1099bb', autoStart: false});
-    var ftps = document.getElementById('fps');
+  var gamesize = new py.Size(500, 500)
+  var app = new py.App(gamesize, {backgroundColor: '#1099bb', autoStart: false})
+  var fps = document.getElementById('fps')
 
-    document.getElementById('game').appendChild(app.view);
+  document.getElementById('game').appendChild(app.view)
 
-    var container = new py.Container();
+  var container = new py.Container()
 
-    coins = new py.SpriteSheet('/assets/img/coin-sprite-animation.png');
-    btfont = new py.extras.BitmapFont('/assets/fonts/Arial.fnt');
-    btfont.spacewidth = 10;
+  coins = new py.SpriteSheet('/assets/img/coin-sprite-animation.png')
+  btfont = new py.extras.BitmapFont('/assets/fonts/Arial.fnt')
+  btfont.spacewidth = 10
 
-    container.addChild(btfont);
-    app.stage.addChild(container);
+  container.addChild(btfont)
+  app.stage.addChild(container)
 
+  btfont.onload = () => {
+    btfont.write('[NL] Loco vs World', 20, 20)
+    console.log('WRITE')
+  }
 
-    // btfont.onload = () => {
-    //     btfont.write('[NL] Loco vs World', 20, 20);
-    //     console.log('WRITE');
-    // }
+  var sprite = new py.Sprite('/assets/img/bunny.png')
+  sprite.x = 200
+  sprite.y = 200
+  sprite.alpha = 0.5;
 
-    var sprite = new py.Sprite('/assets/img/bunny.png')
-    sprite.x = 200;
-    sprite.y = 200;;
-    container.addChild(sprite);
+  var sprite2 = new py.Sprite('/assets/img/bunny.png')
+  sprite2.x = 210
+  sprite2.y = 200
 
-    /**
-     * Ticker.add will trigger app.render();
-     */
-    app.ticker.add(() => {
+  container.addChild(sprite)
+  container.addChild(sprite2)
 
-         fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps());
-    });
+  /**
+   * Ticker.add will trigger app.render();
+   */
+  app.ticker.add(() => {
+    fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps())
+  })
 
-    // container.x = (app.renderer.width - container.width) / 2;
-    // container.y = (app.renderer.height - container.height) / 2;
+  // container.x = (app.renderer.width - container.width) / 2;
+  // container.y = (app.renderer.height - container.height) / 2;
 
 </script>
 </body>

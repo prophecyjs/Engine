@@ -1,4 +1,5 @@
 import CanvasSpriterRenderer from './sprite/canvas/CanvasSpriteRenderer'
+import CanvasGraphicsRenderer from './graphics/canvas/CanvasGraphicsRenderer';
 
 class Renderer {
   constructor (size, options) {
@@ -12,7 +13,8 @@ class Renderer {
 
     Object.assign(this.view.style, options)
     this.plugins = []
-    this.plugins['sprite'] = new CanvasSpriterRenderer(this)
+    this.plugins['sprite'] = new CanvasSpriterRenderer(this);
+    this.plugins['graphics'] = new CanvasGraphicsRenderer(this);
   }
 
   render (displayobject) {

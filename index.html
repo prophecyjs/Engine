@@ -25,7 +25,7 @@
   var graphics = new py.Graphics();
 
   // set a fill and line style
-  graphics.beginFill(0xFF3300);
+  graphics.beginFill('#FF3300');
   graphics.lineStyle(4, 0xffd900, 1);
 
   // draw a shape
@@ -37,6 +37,7 @@
 
 
   container.addChild(graphics)
+  app.stage.addChild(container);
 
   /**
    * Ticker.add will trigger app.render();

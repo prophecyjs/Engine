@@ -35,6 +35,7 @@
     "webpack": "^2.6.1"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "eventemitter3": "^3.0.0",
     "gitbook": "^3.2.3",
     "gitbook-plugin-theme-api": "^1.1.2",

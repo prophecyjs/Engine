@@ -1,7 +1,9 @@
 import Container from '../display/Container'
 import GraphicsData from './GraphicsData';
-import Polygon from './shapes/Polygon';
+import { Polygon, Rectangle, RoundedRectangle, Circle, Ellipse } from './shapes';
 import Color from '../color/Color'
+import { SHAPES } from '../const';
+
 
 class Graphics extends Container {
   constructor () {
@@ -9,6 +11,10 @@ class Graphics extends Container {
 
     this.filling = false
     this.fillColor = null
+    this.lineWidth = 0;
+    this.lineColor = 0;
+    this.lineAlpha = 1;
+    this.fillAlpha = 1;
 
     this.graphicsData = [];
 
@@ -21,8 +27,10 @@ class Graphics extends Container {
 
   beginFill (color = 0, alpha = 1) {
     this.fillColor = Color.fromHex(color)
-    this.fillColor.alpha = alpha
-    this.filling = false
+    this.fillColor.a = alpha
+    // this.fillAlpha = alpha;
+
+    this.filling = true
     return this
   }
 
@@ -34,10 +42,11 @@ class Graphics extends Container {
     this.filling = false
   }
 
-  lineStyle (lineWidth = 0, color = 0, alpha = 1) {
+  lineStyle (lineWidth = 0, color = '#0000', alpha = 1) {
     this.lineWidth = lineWidth;
-    this.lineColor = color;
-    this.lineAlpha = alpha;
+    this.lineColor = Color.fromHex(color);
+    // this.lineAlpha = alpha;
+    this.lineColor.a = alpha;
 
     if (this.currentPath)
     {
@@ -87,16 +96,45 @@ class Graphics extends Container {
 
     this.graphicsData.push(data);
 
-    // if (data.type === SHAPES.POLY)
-    // {
+    if (data.type === SHAPES.POLY)
+    {
       data.shape.closed = data.shape.closed || this.filling;
       this.currentPath = data;
-    // }
+    }
 
     // this.dirty++;
 
     return data;
   }
+
+  drawRect(x, y, width, height)
+  {
+    this.drawShape(new Rectangle(x, y, width, height));
+
+    return this;
+  }
+
+  drawRoundedRect(x, y, width, height, radius)
+  {
+    this.drawShape(new RoundedRectangle(x, y, width, height, radius));
+
+    return this;
+  }
+
+  drawCircle(x, y, radius)
+  {
+    this.drawShape(new Circle(x, y, radius));
+
+    return this;
+  }
+
+  drawEllipse(x, y, width, height)
+  {
+    this.drawShape(new Ellipse(x, y, width, height));
+
+    return this;
+  }
+
 
   moveTo (x, y) {
     const shape = new Polygon([x, y]);

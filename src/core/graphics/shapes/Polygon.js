@@ -1,3 +1,5 @@
+import { SHAPES } from '../../const';
+
 class Polygon {
   constructor (...points) {
     // if this is an array of points, convert it to a flat array of numbers
@@ -24,6 +26,8 @@ class Polygon {
      * @member {number[]}
      */
     this.points = points
+
+    this.type = SHAPES.POLY;
   }
 }
 

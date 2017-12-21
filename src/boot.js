@@ -35,7 +35,7 @@ var py = {
 global.py = py
 
 require('loader/index')
-require('geometry/init')
+require('core/geometry/init')
 require('core/display/init')
 require('core/textures/init')
 require('core/graphics');

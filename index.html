@@ -24,6 +24,7 @@
 
   var container = new py.Container()
   var graphics = new py.Graphics();
+  var text = new py.Text();
 
   // set a fill and line style
   graphics.beginFill('#FF0000');
@@ -63,6 +64,12 @@
   graphics.drawEllipse(350, 250,  90,60);
   graphics.endFill();
 
+  // Draw some text ..
+  text.fontSize = 18;
+  text.fillAlpha = 1;
+  text.writeText('[NL] Loco vs World', 10, 10)
+
+  container.addChild(text);
   container.addChild(graphics)
   app.stage.addChild(container);
 

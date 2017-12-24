@@ -38,6 +38,7 @@ require('loader/index')
 require('core/geometry/init')
 require('core/display/init')
 require('core/textures/init')
-require('core/graphics');
+require('core/graphics')
+require('core/text')
 require('core/sprite/init')
 require('core/app')

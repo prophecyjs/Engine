@@ -158,7 +158,6 @@ class CanvasGraphicsRenderer {
     }
 
     this.renderer.context.restore()
-
   }
 
   renderPolygon (points, close, context) {

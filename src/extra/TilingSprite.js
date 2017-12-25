@@ -11,7 +11,7 @@ class TilingSprite extends Sprite {
       width: width,
       height: height
     }
-   
+
     this.tilePosition = {
       x: 0,
       y: 0,
@@ -37,23 +37,25 @@ class TilingSprite extends Sprite {
     const modX = ((this.tilePosition.x / this.tileScale.x) % this.texture.width) * resolution;
     const modY = ((this.tilePosition.y / this.tileScale.y) % this.texture.height) * resolution;
 
+    // this.anchor.x
     const anchorX = 0 * -this.area.width;
     const anchorY = 0 * -this.area.height;
 
     var context = renderer.context;
     var _canvas = document.createElement('canvas')
     var _ctx = _canvas.getContext('2d')
-   
+
     var pat=_ctx.createPattern(this.texture.raw,"repeat");
-  
+
     // context.clearRect(0,0, this.area.width, this.area.height);
+
 
     context.save()
 
-   
+    context.translate(this.x, this.y);
     context.translate(modX + anchorX, modY + anchorY);
 
-    
+
 
     context.fillStyle=pat;
     context.fillRect(-modX,-modY,

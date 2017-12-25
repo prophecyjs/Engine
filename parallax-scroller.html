@@ -15,7 +15,7 @@
 <div id="fps"></div>
 <script>
 
-  var gamesize = new py.Size(800, 600)
+  var gamesize = new py.Size(800, 384)
   var app = new py.App(gamesize, {backgroundColor: '#000000', autoStart: false})
   // var app = new py.App(gamesize, {backgroundColor: '#1099bb', autoStart: false})
   var fps = document.getElementById('fps')
@@ -42,7 +42,7 @@
   app.ticker.add(() => {
     //  fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps())
     bgFar.tilePosition.x -= 0.128 ;
-    bgMid.tilePosition.x -= 0.64 ;
+    bgMid.tilePosition.x -= 0.20 ;
    // bgMid.x -= 0.64;
   })
 

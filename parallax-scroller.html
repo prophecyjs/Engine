@@ -22,17 +22,28 @@
 
   document.getElementById('game').appendChild(app.view)
 
-  var bgFar = new py.Texture.from
+  var bgFar = new py.extras.TilingSprite('/assets/img/bg-far.png', gamesize.width, 256)
+  var bgMid = new py.extras.TilingSprite('/assets/img/bg-mid.png', gamesize.width, 256)
   var container = new py.Container()
 
-  app.stage.addChild(container);
+  bgFar.x = 0;
+  bgFar.y = 0;
+
+  bgMid.x = 0;
+  bgMid.y = 128;
+
+  container.addChild(bgFar);
+  container.addChild(bgMid);
+  app.stage.addChild(container)
 
   /**
    * Ticker.add will trigger app.render();
    */
   app.ticker.add(() => {
-  //  fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps())
-    rect.rotation += 0.5;
+    //  fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps())
+    bgFar.tilePosition.x -= 0.128 ;
+    bgMid.tilePosition.x -= 0.64 ;
+   // bgMid.x -= 0.64;
   })
 
   // container.x = (app.renderer.width - container.width) / 2;

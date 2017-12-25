@@ -83,7 +83,6 @@ class BitmapFont extends Container {
           if (character == ' ') {
             char.width = this._spacewidth / 2
             char.xoffset = this._spacewidth / 2
-            console.log(char)
           }
 
           sprite.x = x

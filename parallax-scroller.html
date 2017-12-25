@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="build/engine.min.js"></script>
+    <style type="text/css">
+        body {
+            background: darkgray;
+        }
+    </style>
+</head>
+<body>
+<div id="game"></div>
+<div id="fps"></div>
+<script>
+
+  var gamesize = new py.Size(800, 600)
+  var app = new py.App(gamesize, {backgroundColor: '#000000', autoStart: false})
+  // var app = new py.App(gamesize, {backgroundColor: '#1099bb', autoStart: false})
+  var fps = document.getElementById('fps')
+
+  document.getElementById('game').appendChild(app.view)
+
+  var bgFar = new py.Texture.from
+  var container = new py.Container()
+
+  app.stage.addChild(container);
+
+  /**
+   * Ticker.add will trigger app.render();
+   */
+  app.ticker.add(() => {
+  //  fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps())
+    rect.rotation += 0.5;
+  })
+
+  // container.x = (app.renderer.width - container.width) / 2;
+  // container.y = (app.renderer.height - container.height) / 2;
+
+</script>
+</body>
+</html>

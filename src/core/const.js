@@ -18,4 +18,9 @@ export const SHAPES = {
   CIRC: 2,
   ELIP: 3,
   RREC: 4,
-};
+}
+
+export const TEXTTYPES = {
+  NORMAL: 0,
+  STROKED: 1
+}

@@ -65,9 +65,13 @@
   graphics.endFill();
 
   // Draw some text ..
-  text.fontSize = 18;
+  text.fontSize = 30;
+  text.textColor = '#0000ff'
+  text.strokeColor = '#0000ff'
   text.fillAlpha = 1;
-  text.writeText('[NL] Loco vs World', 10, 10)
+  // text.writeText('[NL] Loco vs World', gamesize.width/2 - text.width, gamesize.height/2 + 100)
+
+  text.writeStrokedText('[NL] Loco vs World', gamesize.width/2 - text.width, gamesize.height/2 + 200)
 
   container.addChild(text);
   container.addChild(graphics)
@@ -77,7 +81,7 @@
    * Ticker.add will trigger app.render();
    */
   app.ticker.add(() => {
-    fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps())
+  //  fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps())
     rect.rotation += 0.5;
   })
 

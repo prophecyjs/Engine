@@ -39,6 +39,7 @@
     "eventemitter3": "^3.0.0",
     "gitbook": "^3.2.3",
     "gitbook-plugin-theme-api": "^1.1.2",
+    "pako": "^1.0.6",
     "prophecyjs-loader": "file:C:\\Users\\jmast\\PhpstormProjects\\Loader",
     "rimraf": "^2.6.2"
   }

@@ -36,7 +36,6 @@ class BitmapFont extends Container {
   /** Font loaded */
   _loaded (data) {
     this.chars = data[this.url].data
-    console.log('_loaded')
   }
 
   set spacewidth (width) {

@@ -15,14 +15,24 @@
 <div id="fps"></div>
 <script>
 
-  var gamesize = new py.Size(800, 384)
+  var gamesize = new py.Size(2000, 384)
   var app = new py.App(gamesize, {backgroundColor: '#000000', autoStart: false})
   // var app = new py.App(gamesize, {backgroundColor: '#1099bb', autoStart: false})
   var fps = document.getElementById('fps')
 
   document.getElementById('game').appendChild(app.view)
 
-  var map = new py.extras.TiledMap('/assets/map/tiled/rpg/island.json');
+  // var map = new py.extras.TiledMap('/assets/map/tiled/desert/desert.json');
+  var map = new py.extras.TiledMap('/assets/map/tiled/desert/desert.json');
+
+  map.tilesetSourcePath = '/assets/map/tiled/desert/';
+
+  setTimeout(() => {
+    map.renderlayer(0, 0, 1, gamesize.width, gamesize.height);
+
+  }, 2000)
+
+  // var map = new py.extras.TiledMap('/assets/map/tiled/rpg/island_uncompressed.json');
   var container = new py.Container()
 
   container.addChild(map);
@@ -34,7 +44,7 @@
    */
   app.ticker.add(() => {
 
-    //  fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps())
+      // fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps())
   })
 
   // container.x = (app.renderer.width - container.width) / 2;

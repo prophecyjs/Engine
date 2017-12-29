@@ -15,7 +15,7 @@
 <div id="fps"></div>
 <script>
 
-  var gamesize = new py.Size(2000, 384)
+  var gamesize = new py.Size(400, 200)
   var app = new py.App(gamesize, {backgroundColor: '#000000', autoStart: false})
   // var app = new py.App(gamesize, {backgroundColor: '#1099bb', autoStart: false})
   var fps = document.getElementById('fps')
@@ -23,28 +23,40 @@
   document.getElementById('game').appendChild(app.view)
 
   // var map = new py.extras.TiledMap('/assets/map/tiled/desert/desert.json');
-  var map = new py.extras.TiledMap('/assets/map/tiled/desert/desert.json');
+  var map = new py.extras.TiledMap('/assets/map/tiled/desert/desert.json')
+  map.viewRect = {
+    x: 0,
+    y: 0,
+    w: gamesize.width,
+    h: gamesize.height
+  }
 
-  map.tilesetSourcePath = '/assets/map/tiled/desert/';
+  map.tilesetSourcePath = '/assets/map/tiled/desert/'
 
   setTimeout(() => {
-    map.renderlayer(0, 0, 1, gamesize.width, gamesize.height);
+    map.centerAt(140, 0, gamesize.width, gamesize.height);
 
-  }, 2000)
+    map.renderlayer(0)
+
+  }, 600)
 
   // var map = new py.extras.TiledMap('/assets/map/tiled/rpg/island_uncompressed.json');
   var container = new py.Container()
 
-  container.addChild(map);
+  container.addChild(map)
 
   app.stage.addChild(container)
 
-  /**
+  let x = map.viewRect.x;
+ /**
    * Ticker.add will trigger app.render();
    */
   app.ticker.add(() => {
 
-      // fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps())
+    x += 0.01;
+
+  //  console.log(map.viewRect)
+    // fps.innerHTML = 'FPS: ' + Math.round(app.ticker.getActualFps())
   })
 
   // container.x = (app.renderer.width - container.width) / 2;

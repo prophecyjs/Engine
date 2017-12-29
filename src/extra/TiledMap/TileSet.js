@@ -99,6 +99,14 @@ class TileSet {
     })
   }
 
+  /**
+   * Return Sprite for the tileIndex location. If already
+   * used or parsed it will return a cached copy of that
+   * sprite.
+   *
+   * @param {number} tileIndex The the index number for this tile
+   * @returns {(Sprite)} Return a sprite
+   */
   getTileAtIndex (tileIndex) {
     var localIdx = tileIndex - this.firstgid // % 1// - index
 

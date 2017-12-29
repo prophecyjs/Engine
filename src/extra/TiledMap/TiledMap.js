@@ -18,9 +18,17 @@ class TiledMap extends Container {
     this.viewRect = {
       x: 0,
       y: 0,
-      w: 0,
-      h: 0
+      w: 1000,
+      h: 1000
     }
+
+    this.tileSize = {
+      x: 0,
+      y: 0,
+    }
+
+    this.numXTiles = 0
+    this.numYTiles = 0
 
     loader.loadFile(url, 'tiledmap_data').on('on.complete', (data) => {
       this._loaded(data)
@@ -36,12 +44,8 @@ class TiledMap extends Container {
     this.parse()
   }
 
-  _identified (resource) {
-    this.onload()
-  }
-
   onload () {
-
+    console.log('onload')
   }
 
   parse () {
@@ -66,8 +70,12 @@ class TiledMap extends Container {
       var tileset = new TileSet(set.firstgid, set.source, this._tilesetSourcePath.length > 0, this._tilesetSourcePath)
       this.tilesets.push(tileset)
     }
-    console.log('layers')
 
+    this.tileSize.x = this.data.tilewidth
+    this.tileSize.y = this.data.tileheight
+
+    this.numXTiles = this.data.width
+    this.numYTiles = this.data.height
   }
 
   getTilset (gid) {
@@ -79,80 +87,54 @@ class TiledMap extends Container {
     return false
   }
 
-  renderlayer (id, offsetX, offsetY, width, height) {
+  centerAt(x, y, w, h) {
+    this.viewRect.w = w;
+    this.viewRect.h = h;
+    this.viewRect.x = x - (w/2);
+    this.viewRect.y = y - (h/2);
 
-    var layer = this.layers[id]
-    // layer.width -= 1;
-    // layer.height -= 1;
-    // console.log(layer.data);
-    this.numXTiles = 40
-    this.numYTiles = 40
-    this.tileSize = {
-      x: 32,
-      y: 32,
-    }
+  }
+
+  renderlayer (id) {
+
+    var layer = this.layers[id] // TODO: Logic here dont hardcode
+
     if (typeof layer != 'undefined') {
-      console.log('Length: ' + layer.data.length)
-      console.log(layer.data)
+
       for (var i = 0; i < layer.data.length; i++) {
         var tileid = layer.data[i]
 
-        var tileset = this.tilesets[0]; // NOTE this.getTilset(tileid)
+        var tileset = this.tilesets[0];// this.getTilset(tileid)
 
         if (tileset) {
 
           var worldX = Math.floor(i % this.numXTiles) * this.tileSize.x
           var worldY = Math.floor(i / this.numYTiles) * this.tileSize.y
 
+          // Calculate if we are should render this tile.
+          if ((worldX + this.tileSize.x) < this.viewRect.x ||
+              (worldY + this.tileSize.y) < this.viewRect.y ||
+            worldX > this.viewRect.x + this.viewRect.w ||
+            worldY > this.viewRect.y + this.viewRect.h)
+          continue;
+
+
+          worldX -= this.viewRect.x
+          worldY -= this.viewRect.y
+
           var sprite = tileset.getTileAtIndex(tileid)
 
           if (sprite) {
-            sprite.x = worldX - 1
-            sprite.y = worldY - 1
+            sprite.x = worldX - tileset.spacing
+            sprite.y = worldY - tileset.spacing
 
             this.addChild(sprite)
           } else {
             console.log('No sprite')
           }
-
-        } else {
-
-          console.log('Cant find tileset for ' + tileid + ' at ' + i + ' (' + layer.data[i] + ')')
-          console.log(Math.floor(i % layer.width))
         }
       }
     }
-    // if (typeof layer != 'undefined') {
-    //   var start = (layer.width * offsetY) + offsetX;
-    //   var end = (start + layer.width) ;
-    //
-    //   var tileset = this.tilesets[0]
-    //
-    //   var x = 0;
-    //   var y = 0;
-    //   for (var i = start; i < end; i++) {
-    //     var gid = layer.data[i] -1
-    //     let sprite = tileset.getTileAtIndex(gid)
-    //
-    //     sprite.x = x
-    //     sprite.y = y
-    //
-    //     x += 30;
-    //
-    //     this.addChild(sprite)
-    //   }
-    //   console.log('start ' + start)
-    //   console.log('end ' + end)
-    //   console.log('start gid ' + gid)
-    //    // TODO find right tileset
-    //
-    //
-    //
-    //   console.log(layer)
-    //   console.log(layer.width * offsetY)
-    //
-    //
-    // }
   }
 }
 

@@ -24,6 +24,10 @@ class Renderer {
 
   render (displayobject) {
     this.clear()
+    // TODO: HACK
+    if (! displayobject.renderer) {
+      displayobject.renderer = this;
+    }
     displayobject.renderCanvas(this)
   }
 

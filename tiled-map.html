@@ -34,10 +34,13 @@
   map.tilesetSourcePath = '/assets/map/tiled/desert/'
 
   setTimeout(() => {
+    console.time('testForEach');
+
     // Place the invisible player at the center of the screen.
     map.centerAt(gamesize.width/2, gamesize.height/2, gamesize.width, gamesize.height);
 
     map.renderlayer(0)
+    console.timeEnd('testForEach');
 
   }, 600)
 

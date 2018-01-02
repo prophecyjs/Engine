@@ -19,7 +19,7 @@ class Container extends DisplayObject {
    * @returns {*}
    */
   get parent () {
-    return this._parerent
+    return this._parent
   }
 
   /**

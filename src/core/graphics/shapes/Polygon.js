@@ -29,6 +29,11 @@ class Polygon {
 
     this.type = SHAPES.POLY;
   }
+
+  contains (x, y) {
+    // TODO
+  }
+
 }
 
 module.exports = Polygon

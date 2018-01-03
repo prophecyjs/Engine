@@ -1,6 +1,6 @@
 import Transform from './Transform'
 import { InteractionManager } from '../interaction'
-import {shared} from '../ticker'
+
 
 
 /**

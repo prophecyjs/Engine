@@ -6,9 +6,14 @@ class RoundedRectangle {
     this.y = y || 0
     this.width = width || 0
     this.height = height || 0
-    this.radius = radius;
-    this.type = SHAPES.RREC;
+    this.radius = radius
+    this.type = SHAPES.RREC
   }
+
+  contains (x, y) {
+    // TODO
+  }
+
 }
 
 module.exports = RoundedRectangle

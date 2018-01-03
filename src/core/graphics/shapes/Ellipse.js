@@ -8,6 +8,11 @@ class Ellipse {
     this.height = h || 0
     this.type = SHAPES.ELIP;
   }
+
+  contains (x, y) {
+    // TODO
+  }
+
 }
 
 module.exports = Ellipse

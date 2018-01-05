@@ -1,4 +1,4 @@
-import {shared} from '../core/ticker'
+import { shared } from '../core/ticker'
 import Container from '../core/display/Container'
 
 /**
@@ -6,7 +6,7 @@ import Container from '../core/display/Container'
  *
  * @class py.SpriteSheetAnimation
  * @extends py.Container
- * @memberof py
+ * @memberof py.extras
  */
 class SpriteSheetAnimation extends Container {
   constructor () {
@@ -23,11 +23,11 @@ class SpriteSheetAnimation extends Container {
     }
   }
 
-    /**
-     * Set the number of ticks per frame.
-     *
-     * @param {number} speed
-     */
+  /**
+   * Set the number of ticks per frame.
+   *
+   * @param {number} speed
+   */
   set speed (speed) {
     this._speed = speed / 1000
   }
@@ -65,11 +65,11 @@ class SpriteSheetAnimation extends Container {
     }
   }
 
-    /**
-     * Set the number of ticks per frame.
-     *
-     * @param {Sprite} frame Add a sprite to this animation
-     */
+  /**
+   * Set the number of ticks per frame.
+   *
+   * @param {Sprite} frame Add a sprite to this animation
+   */
   addFrame (frame) {
     frame.x = this.x
     frame.y = this.y
@@ -79,9 +79,9 @@ class SpriteSheetAnimation extends Container {
     this.addChild(frame)
   }
 
-    /**
-     * Play the animation
-     */
+  /**
+   * Play the animation
+   */
   play () {
     this.ticker.add((delta) => {
       this._update(delta)
@@ -89,9 +89,9 @@ class SpriteSheetAnimation extends Container {
     this.ticker.start()
   }
 
-    /**
-     * Pauze the animation
-     */
+  /**
+   * Pauze the animation
+   */
   pauze () {
     this.ticker.stop()
   }

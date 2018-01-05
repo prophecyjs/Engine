@@ -1,7 +1,15 @@
 import Container from '../core/display/Container'
 import { loader } from '../loader'
 
+/**
+ * Load a BitmapFont and render it to the screen
+ *
+ * @class BitmapFont
+ * @extends py.Container
+ * @memberof py.extras
+ */
 class BitmapFont extends Container {
+  
   /**
    * Create a BitmapFont.
    * @param {string} url - Url to the fnt file

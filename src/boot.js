@@ -29,7 +29,7 @@ if (typeof Object.assign !== 'function') {
 }
 
 var py = {
-  extras: require('./extra')
+  extras: require('./extras')
 }
 
 global.py = py
@@ -42,3 +42,4 @@ require('core/graphics')
 require('core/text')
 require('core/sprite/init')
 require('core/app')
+require('utils') // Not in minimize

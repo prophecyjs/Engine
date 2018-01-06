@@ -1,9 +1,8 @@
 import Container from '../display/Container'
-import GraphicsData from './GraphicsData';
-import { Polygon, Rectangle, RoundedRectangle, Circle, Ellipse } from './shapes';
+import GraphicsData from './GraphicsData'
+import { Polygon, Rectangle, RoundedRectangle, Circle, Ellipse } from './shapes'
 import Color from '../color/Color'
-import { SHAPES } from '../const';
-
+import { SHAPES } from '../const'
 
 class Graphics extends Container {
   constructor () {
@@ -11,13 +10,13 @@ class Graphics extends Container {
 
     this.filling = false
     this.fillColor = null
-    this.lineWidth = 0;
-    this.lineColor = 0;
-    this.lineAlpha = 1;
-    this.fillAlpha = 1;
+    this.lineWidth = 0
+    this.lineColor = 0
+    this.lineAlpha = 1
+    this.fillAlpha = 1
 
-    this.graphicsData = [];
-
+    this.graphicsData = []
+    this.interactive = true
     this.pluginName = 'graphics'
   }
 
@@ -25,11 +24,30 @@ class Graphics extends Container {
     renderer.plugins[this.pluginName].render(this)
   }
 
+  containsPoint (point) {
+    const graphicsData = this.graphicsData
+
+    for (let i = 0; i < graphicsData.length; ++i) {
+      const data = graphicsData[i]
+
+      if (!data.fill) {
+        continue
+      }
+
+      // only deal with fills..
+      if (data.shape) {
+        if (data.shape.contains(point.x, point.y)) {
+          return true
+        }
+      }
+    }
+
+    return false
+  }
+
   beginFill (color = 0, alpha = 1) {
     this.fillColor = Color.fromHex(color)
     this.fillColor.a = alpha
-    // this.fillAlpha = alpha;
-
     this.filling = true
     return this
   }
@@ -43,45 +61,38 @@ class Graphics extends Container {
   }
 
   lineStyle (lineWidth = 0, color = '#0000', alpha = 1) {
-    this.lineWidth = lineWidth;
-    this.lineColor = Color.fromHex(color);
-    // this.lineAlpha = alpha;
-    this.lineColor.a = alpha;
+    this.lineWidth = lineWidth
+    this.lineColor = Color.fromHex(color)
+    this.lineColor.a = alpha
 
-    if (this.currentPath)
-    {
-      if (this.currentPath.shape.points.length)
-      {
+    if (this.currentPath) {
+      if (this.currentPath.shape.points.length) {
         // halfway through a line? start a new one!
-        const shape = new Polygon(this.currentPath.shape.points.slice(-2));
+        const shape = new Polygon(this.currentPath.shape.points.slice(-2))
 
-        shape.closed = false;
+        shape.closed = false
 
-        this.drawShape(shape);
+        this.drawShape(shape)
       }
-      else
-      {
+      else {
         // otherwise its empty so lets just set the line properties
-        this.currentPath.lineWidth = this.lineWidth;
-        this.currentPath.lineColor = this.lineColor;
-        this.currentPath.lineAlpha = this.lineAlpha;
+        this.currentPath.lineWidth = this.lineWidth
+        this.currentPath.lineColor = this.lineColor
+        this.currentPath.lineAlpha = this.lineAlpha
       }
     }
 
-    return this;
+    return this
   }
 
-  drawShape(shape) {
-    if (this.currentPath)
-    {
-      // check current path!
-      if (this.currentPath.shape.points.length <= 2)
-      {
-        this.graphicsData.pop();
+  drawShape (shape) {
+    if (this.currentPath) {
+      if (this.currentPath.shape.points.length <= 2) {
+        this.graphicsData.pop()
       }
     }
 
-    this.currentPath = null;
+    this.currentPath = null
 
     const data = new GraphicsData(
       this.lineWidth,
@@ -92,62 +103,54 @@ class Graphics extends Container {
       this.filling,
       this.nativeLines,
       shape
-    );
+    )
 
-    this.graphicsData.push(data);
+    this.graphicsData.push(data)
 
-    if (data.type === SHAPES.POLY)
-    {
-      data.shape.closed = data.shape.closed || this.filling;
-      this.currentPath = data;
+    if (data.type === SHAPES.POLY) {
+      data.shape.closed = data.shape.closed || this.filling
+      this.currentPath = data
     }
 
-    // this.dirty++;
-
-    return data;
+    return data
   }
 
-  drawRect(x, y, width, height)
-  {
-    this.drawShape(new Rectangle(x, y, width, height));
+  drawRect (x, y, width, height) {
+    this.drawShape(new Rectangle(x, y, width, height))
 
-    return this;
+    return this
   }
 
-  drawRoundedRect(x, y, width, height, radius)
-  {
-    this.drawShape(new RoundedRectangle(x, y, width, height, radius));
+  drawRoundedRect (x, y, width, height, radius) {
+    this.drawShape(new RoundedRectangle(x, y, width, height, radius))
 
-    return this;
+    return this
   }
 
-  drawCircle(x, y, radius)
-  {
-    this.drawShape(new Circle(x, y, radius));
+  drawCircle (x, y, radius) {
+    this.drawShape(new Circle(x, y, radius))
 
-    return this;
+    return this
   }
 
-  drawEllipse(x, y, width, height)
-  {
-    this.drawShape(new Ellipse(x, y, width, height));
+  drawEllipse (x, y, width, height) {
+    this.drawShape(new Ellipse(x, y, width, height))
 
-    return this;
+    return this
   }
-
 
   moveTo (x, y) {
-    const shape = new Polygon([x, y]);
+    const shape = new Polygon([x, y])
 
-    shape.closed = false;
-    this.drawShape(shape);
+    shape.closed = false
+    this.drawShape(shape)
 
-    return this;
+    return this
   }
 
   lineTo (x, y) {
-    this.currentPath.shape.points.push(x, y);
-    return this;
+    this.currentPath.shape.points.push(x, y)
+    return this
   }
 
 }

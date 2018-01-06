@@ -1,6 +1,10 @@
 class InteractionEvent {
   constructor (event) {
-    this.origEvent = event
+    this.originalEvent = event
+    this.target = null;
+    this.point = null;
+    this.x = 0;
+    this.y = 0;
   }
 
 }

@@ -1,5 +1,5 @@
 Object.assign(py, {
-  Point: require('./point'),
-  Size: require('./size'),
-  Rect: require('./Rectangle')
+  Point: require('./Point'),
+  Size: require('./Size'),
+  Rect: require('./Rect')
 })

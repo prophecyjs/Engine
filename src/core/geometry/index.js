@@ -1,3 +1,4 @@
-import Rectangle from './Rectangle';
+import Rect from './Rect';
+import Point from './Point'
 
-export { Rectangle }
+export { Rect, Point }

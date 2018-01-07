@@ -1,5 +1,7 @@
 import { SHAPES } from '../../const'
 
+// TODO: Hit testing fails on border
+
 class Rectangle {
   constructor (x, y, w, h) {
     this.x = x || 0
@@ -22,7 +24,7 @@ class Rectangle {
       return false
     }
 
-    if (x >= this.x && x < this.x + width) {
+    if (x >= this.x && x < this.x + this.width) {
       if (y >= this.y && y < this.y + this.height) {
         return true
       }

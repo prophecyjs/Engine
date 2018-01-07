@@ -6,12 +6,13 @@ class GraphicsData {
     this.lineAlpha = lineAlpha
     this._lineTint = lineColor
     this.fillColor = fillColor
-    this.fillAlpha = fillAlpha
+    // this.fillAlpha = fillAlpha
     this._fillTint = fillColor
     this.fill = fill
     this.holes = []
     this.shape = shape
     this.type = shape.type
+    this.interactive = true
   }
 }
 

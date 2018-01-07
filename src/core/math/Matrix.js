@@ -80,7 +80,7 @@ class Matrix {
     return [this.rows, this.columns]
   }
 
-  resize (rows = 0, columns = 0) {
+  resize (rows = 0, columns = 0, fill = 0) {
 
     let subset = new Matrix(rows, columns)
     if (!Array.isArray(this.matrix) || !Array.isArray(this.matrix)) {
@@ -88,9 +88,26 @@ class Matrix {
     }
 
     if (rows < this.rows && columns < this.columns) {
-      return this.subset(0, 0, rows, columns)
+      subset = this.subset(0, 0, rows, columns)
     }
 
+    if (rows > this.rows) {
+      let delta = this.rows - rows
+      for (let i = 0; i < delta; i++) {
+        this.matrix.push(new Array(columns))
+      }
+    }
+
+    if (columns > this.columns) {
+      let delta = this.columns - columns;
+      for (var row = 0; row < this.rows; row++) {
+        for (column = 0; column < delta; column++ ) {
+          this.setValue(row, column, fill);
+        }
+      }
+    }
+
+    return subset
   }
 
   /**

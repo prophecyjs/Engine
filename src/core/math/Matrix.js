@@ -82,27 +82,24 @@ class Matrix {
 
   resize (rows = 0, columns = 0, fill = 0) {
 
-    let subset = new Matrix(rows, columns)
-    if (!Array.isArray(this.matrix) || !Array.isArray(this.matrix)) {
-      throw new TypeError('Array expected')
-    }
+    let subset = this.clone()
 
     if (rows < this.rows && columns < this.columns) {
       subset = this.subset(0, 0, rows, columns)
     }
 
     if (rows > this.rows) {
-      let delta = this.rows - rows
+      let delta = rows - this.rows
       for (let i = 0; i < delta; i++) {
-        this.matrix.push(new Array(columns))
+        subset.matrix.push(Array(columns).fill(fill))
       }
     }
 
     if (columns > this.columns) {
-      let delta = this.columns - columns;
-      for (var row = 0; row < this.rows; row++) {
-        for (column = 0; column < delta; column++ ) {
-          this.setValue(row, column, fill);
+      let delta = columns - this.columns
+      for (let row = 0; row < this.rows; row++) {
+        for (let column = this.columns; column < this.columns+delta; column++ ) {
+          subset.setValue(row, column, fill);
         }
       }
     }

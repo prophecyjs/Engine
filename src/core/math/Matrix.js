@@ -80,6 +80,30 @@ class Matrix {
     return [this.rows, this.columns]
   }
 
+  /**
+   * Return a sized version (up or down) of the Matrix.
+   *
+   * @example
+   * var matrix = new py.math.Matrix(1,3);
+   * matrix.setValue(0, 0, 'A')
+   * .setValue(0, 1, 'B')
+   * .setValue(0, 2, 'C')
+   *
+   * // Our matrix looks like
+   * // [A, B, C]
+   *
+   * // Lets add one more row
+   * let result = matrix.resize(2,3);
+   *
+   * // Our matrix now looks like this
+   * // [A, B, C, 0]
+   * // [0, 0, 0, 0]
+   *
+   * @param {number} rows The new size in rows
+   * @param {number} columns The new size in Columns
+   * @param {number} [fill=0] The fill for the matrix values
+   * @returns {py.math.Matrix} The resized version of the matrix
+   */
   resize (rows = 0, columns = 0, fill = 0) {
 
     let subset = this.clone()
@@ -88,8 +112,9 @@ class Matrix {
       subset = this.subset(0, 0, rows, columns)
     }
 
-    if (rows > this.rows) {
+    if (rows > this.rows - 1) {
       let delta = rows - this.rows
+      console.log(delta)
       for (let i = 0; i < delta; i++) {
         subset.matrix.push(Array(columns).fill(fill))
       }
@@ -98,8 +123,8 @@ class Matrix {
     if (columns > this.columns) {
       let delta = columns - this.columns
       for (let row = 0; row < this.rows; row++) {
-        for (let column = this.columns; column < this.columns+delta; column++ ) {
-          subset.setValue(row, column, fill);
+        for (let column = this.columns; column < this.columns + delta; column++) {
+          subset.setValue(row, column, fill)
         }
       }
     }

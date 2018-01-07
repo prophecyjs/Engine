@@ -42,6 +42,18 @@ class Matrix {
   /**
    * Set the value inside the matrix
    *
+   * @example
+   * let matrix = new py.math.Matrix(1,1, 'A');
+   * matrix.setValue(0, 0, 'A')
+   * matrix.setValue(0, 1, 'B')
+   *
+   * // Our matrix now looks like
+   * // [A, B]
+   *
+   * // The will return
+   * // [A,B]
+   * console.table(matrix.valueOf())
+   *
    * @param {number} row The row on which to set the value
    * @param {number} column The column on which to set the value
    * @param {number} value The value to set on the coordinates
@@ -53,6 +65,18 @@ class Matrix {
   }
 
   /**
+   * Return a value stored in the Matrix at row and column
+   *
+   * @example
+   * let matrix = new py.math.Matrix(1,1, 'A');
+   * matrix.setValue(0, 0, 'A')
+   * matrix.setValue(0, 1, 'B')
+   *
+   * // Our matrix looks like this
+   * // [A, B]
+   *
+   * // This will output B
+   * console.log(matrix.valueAt(0, 1))
    *
    * @param {number} row The row on which to get the value
    * @param {number} column The column on which to get the value
@@ -64,6 +88,15 @@ class Matrix {
 
   /**
    * Get the value of the matrix
+   *
+   * @example
+   * let matrix = new py.math.Matrix(1,3, 'A');
+   *
+   * // Our Matrix looks like
+   * // [A, A, A]
+   *
+   * // Outputs [A, A, A]
+   * console.log(matrix.valueOf())
    *
    * @returns {Array} Return the Matrix Array
    */
@@ -81,7 +114,7 @@ class Matrix {
    * // [0, 0, 0]
    *
    * // Output would be [1,3]
-   * console.table(matrix.valueOf())
+   * console.log(matrix.size())
    *
    * @returns {(number|Array)} returns the number of rows and columns in the Matrix
    */

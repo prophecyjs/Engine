@@ -16,10 +16,10 @@ class Matrix {
    * @param {number} cols The number of columns in the matrix
    * @param {number} [fill=0] The initial fill for the matrix
    */
-  constructor (rows, columns, fill = 0) {
+  constructor (rows = 0, columns = 0, fill = 0) {
     this.rows = rows
-    this.columns = cols
-    this.matrix = Array(rows).fill().map(() => Array(cols).fill(fill))
+    this.columns = columns
+    this.matrix = Array(rows).fill().map(() => Array(columns).fill(fill))
   }
 
   /**
@@ -30,8 +30,13 @@ class Matrix {
   clone () {
     let clone = new Matrix(this.rows, this.columns)
     clone.matrix = this.matrix.map(value => { return value })
-
     return clone
+  }
+
+  constrain (n, low, high) {
+    if (n < low) n = low
+    if (n > high) n = high
+    return n
   }
 
   /**
@@ -62,8 +67,8 @@ class Matrix {
    *
    * @returns {Array} Return the Matrix Array
    */
-  valueOf() {
-    return this.matrix;
+  valueOf () {
+    return this.matrix
   }
 
   /**
@@ -75,13 +80,78 @@ class Matrix {
     return [this.rows, this.columns]
   }
 
-  resize() {
-    // TODO implement
+  resize (rows = 0, columns = 0) {
+
+    let subset = new Matrix(rows, columns)
+    if (!Array.isArray(this.matrix) || !Array.isArray(this.matrix)) {
+      throw new TypeError('Array expected')
+    }
+
+    if (rows < this.rows && columns < this.columns) {
+      return this.subset(0, 0, rows, columns)
+    }
+
   }
 
+  /**
+   * @example
+   *  let matrix = new py.math.Matrix(3,3)
+   * matrix.setValue(0, 0, 'A')
+   *  .setValue(0, 1, 'B')
+   *  .setValue(0, 2, 'C')
+   *  .setValue(1, 0, 'D')
+   *  .setValue(1, 1, 'E')
+   *  .setValue(1, 2, 'F')
+   *  .setValue(2, 0, 'G')
+   *  .setValue(2, 1, 'H')
+   *  .setValue(2, 2, 'I')
+   *
+   *
+   * // Creates a matrix like this
+   * // [A,B,C]
+   * // [D,E,F]
+   * // [G,H,I]
+   *
+   * let start_row = 0
+   * let start_column = 1
+   * let row_offset = 3
+   * let column_offset = 2
+   * let subset = matrix.subset(start_row, start_column, row_offset, column_offset);
+   *
+   * // Results in a subset of
+   * // [B, C]
+   * // [E, F]
+   * // [H, I]
+   * console.table(subset.valueof());
+   *
+   *
+   * @param {number} row The starting row
+   * @param {number} column The starting row
+   * @param {number} row_offset The number of rows for the subset
+   * @param {number} column_offset The number of columns for the subset
+   * @returns {boolean|Matrix}
+   */
+  subset (row, column, row_offset, column_offset) {
 
-  subset(row, columns, row_offet, column_offset)  {
-    // TODO implement
+    if (row > this.rows || column > this.columns) {
+      return false
+    }
+
+    let subset = new Matrix(row_offset, column_offset)
+    let max_rows = this.constrain(row + row_offset, 0, this.rows)
+    let max_columns = this.constrain(column + column_offset, 0, this.columns)
+    let target_row = 0
+    let target_column = 0
+
+    for (let source_row = row; source_row < max_rows; source_row++) {
+      target_column = 0
+      for (let source_column = column; source_column < max_columns; source_column++) {
+        subset.setValue(target_row, target_column, this.valueAt(source_row, source_column))
+        target_column++
+      }
+      target_row++
+    }
+    return subset
   }
 
   /**

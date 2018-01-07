@@ -1,5 +1,6 @@
 var py = {
-  extras: require('./extras') // TODO: Not in mini build
+  extras: require('./extras'), // TODO: Not in mini build
+  math: require('./core/math')
 }
 
 global.py = py

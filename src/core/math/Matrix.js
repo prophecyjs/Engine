@@ -74,6 +74,15 @@ class Matrix {
   /**
    * Get the size of the Matrix
    *
+   * @example
+   * let matrix = new py.math.Matrix(1,3);
+   *
+   * // Our matrix now looks like this
+   * // [0, 0, 0]
+   *
+   * // Output would be [1,3]
+   * console.table(matrix.valueOf())
+   *
    * @returns {(number|Array)} returns the number of rows and columns in the Matrix
    */
   size () {
@@ -84,7 +93,7 @@ class Matrix {
    * Return a sized version (up or down) of the Matrix.
    *
    * @example
-   * var matrix = new py.math.Matrix(1,3);
+   * let matrix = new py.math.Matrix(1,3);
    * matrix.setValue(0, 0, 'A')
    * .setValue(0, 1, 'B')
    * .setValue(0, 2, 'C')
@@ -194,6 +203,22 @@ class Matrix {
   }
 
   /**
+   * @example
+   * let matrix = new py.math.Matrix(1,3);
+   * matrix.setValue(0, 0, 1)
+   * .setValue(0, 1, 2)
+   * .setValue(0, 2, 3)
+   *
+   * // Our matrix looks like this
+   * // [1,2,3]
+   *
+   * // Lets add 2 to all values
+   * let result = matrix.add(2);
+   *
+   * // Our resulting matrix now looks like this
+   * // [3, 4, 5]
+   *
+   * console.table(result.valueOf())
    *
    * @param {number|Matrix} n Add a number to the matrix or add a an other Matrix object
    * @returns {py.math.Matrix}
@@ -219,6 +244,22 @@ class Matrix {
   }
 
   /**
+   * @example
+   * let matrix = new py.math.Matrix(1,3);
+   * matrix.setValue(0, 0, 3)
+   * .setValue(0, 1, 4)
+   * .setValue(0, 2, 5)
+   *
+   * // Our matrix looks like this
+   * // [3,4,5]
+   *
+   * // Lets subtract 2 to all values
+   * let result = matrix.subtract(2);
+   *
+   * // Our resulting matrix now looks like this
+   * // [1, 2, 3]
+   *
+   * console.table(result.valueOf())
    *
    * @param {number|Matrix} n Add a number to the matrix or add a an other Matrix object
    * @returns {py.math.Matrix}
@@ -244,7 +285,23 @@ class Matrix {
   }
 
   /**
+   * @example
+   * let matrix = new py.math.Matrix(1,3);
+   * matrix.setValue(0, 0, 1)
+   * .setValue(0, 1, 2)
+   * .setValue(0, 2, 3)
    *
+   * // Our matrix looks like this
+   * // [1,2,3]
+   *
+   * // Lets multiply 2 to all values
+   * let result = matrix.multiply(2);
+   *
+   * // Our resulting matrix now looks like this
+   * // [2, 4, 6]
+   *
+   * console.table(result.valueOf())
+
    * @param {number|Matrix} n Multiply a number to the matrix or multiply a an other Matrix object
    * @returns {py.math.Matrix}
    */

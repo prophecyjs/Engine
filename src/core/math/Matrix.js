@@ -16,9 +16,9 @@ class Matrix {
    * @param {number} cols The number of columns in the matrix
    * @param {number} [fill=0] The initial fill for the matrix
    */
-  constructor (rows, cols, fill = 0) {
+  constructor (rows, columns, fill = 0) {
     this.rows = rows
-    this.cols = cols
+    this.columns = cols
     this.matrix = Array(rows).fill().map(() => Array(cols).fill(fill))
   }
 
@@ -28,7 +28,7 @@ class Matrix {
    * @returns {py.math.Matrix}
    */
   clone () {
-    let clone = new Matrix(this.rows, this.cols)
+    let clone = new Matrix(this.rows, this.columns)
     clone.matrix = this.matrix.map(value => { return value })
 
     return clone
@@ -58,12 +58,30 @@ class Matrix {
   }
 
   /**
+   * Get the value of the matrix
+   *
+   * @returns {Array} Return the Matrix Array
+   */
+  valueOf() {
+    return this.matrix;
+  }
+
+  /**
    * Get the size of the Matrix
    *
    * @returns {(number|Array)} returns the number of rows and columns in the Matrix
    */
   size () {
-    return [this.rows, this.cols]
+    return [this.rows, this.columns]
+  }
+
+  resize() {
+    // TODO implement
+  }
+
+
+  subset(row, columns, row_offet, column_offset)  {
+    // TODO implement
   }
 
   /**

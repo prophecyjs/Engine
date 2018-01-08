@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="build/engine.min.js"></script>
+    <style type="text/css">
+        body {
+            background: darkgray;
+        }
+    </style>
+</head>
+<body>
+<div id="game"></div>
+<div id="fps"></div>
+<script>
+  var fps = document.getElementById('fps')
+
+  function gameOfLife () {
+    this.width = 600
+    this.height = 400
+    this.graphics = new py.Graphics()
+    this.container = new py.Container()
+    this.color_white = new py.Color.fromHex('#FFFFFF')
+    this.color_black = new py.Color.fromHex('#000000')
+    this.resolution = 50
+    this.boxwidth = this.width / this.resolution
+    this.boxheight = this.height / this.resolution
+    this.matrix = new py.math.Matrix(this.width / this.boxwidth, this.height / this.boxheight)
+
+    this.app = new py.App(new py.Size(this.width, this.height), {
+      backgroundColor: '#000000',
+      autoStart: false
+    })
+    this.app.ticker.add(() => {
+      this.update()
+      fps.innerHTML = 'FPS: ' + Math.round(this.app.ticker.getActualFps())
+    })
+
+    this.app.ticker.setTargetFps(10)
+
+    // Elke cell is zwart
+    this.graphics.fillColor = this.color_black
+    this.graphics.lineStyle(1, '#FFFFFF', 1)
+  }
+
+  gameOfLife.prototype.init = function () {
+    document.getElementById('game').appendChild(this.app.view)
+
+    this.container.addChild(this.graphics)
+    this.app.stage.addChild(this.container)
+
+    let cellindex = 0
+
+    for (let row = 0, _y = 0; row < this.matrix.rows; row++, _y += this.boxheight) {
+      for (let column = 0, _x = 0; column < this.matrix.columns; column++, _x += this.boxwidth) {
+
+        cell = {
+          x: _x,
+          y: _y,
+          w: this.boxwidth,
+          h: this.boxheight,
+          index: cellindex,
+          state: Math.floor(Math.random() * 10) == 1, // Math.round(Math.random() * 1),
+        }
+
+        this.matrix.setValue(row, column, cell)
+        this.graphics.drawRect(cell.x, cell.y, cell.w, cell.h)
+
+        cellindex++
+      }
+    }
+  }
+  gameOfLife.prototype.countNeighbors = function (x, y) {
+    let sum = 0
+    for (let i = -1; i < 2; i++) {
+      for (let j = -1; j < 2; j++) {
+        let col = (x + i + this.matrix.columns) % this.matrix.columns
+        let row = (y + j + this.matrix.rows) % this.matrix.rows
+        cell = this.matrix.valueAt(col, row)
+        sum += cell.state
+      }
+    }
+    cell = this.matrix.valueAt(x, y)
+    sum -= cell.state
+    return sum
+  }
+
+  gameOfLife.prototype.update = function () {
+
+    for (let row = 0; row < this.matrix.rows; row++) {
+      for (let column = 0; column < this.matrix.columns; column++) {
+        let cell = this.matrix.valueAt(row, column)
+
+        /**
+         * Regels
+         * 1) Any live cell with fewer than two live neighbours dies (referred to as underpopulation or exposure[1]).
+         * 2) Any live cell with more than three live neighbours dies (referred to as overpopulation or overcrowding).
+         * 3) Any live cell with two or three live neighbours lives, unchanged, to the next generation.
+         * 4) Any dead cell with exactly three live neighbours will come to life.
+         */
+
+        let neighbors = this.countNeighbors(row, column)
+
+        let two = 2;
+        let three = 3;
+        let four = 4
+
+        if (cell.state == 1 && neighbors < two) { // Rule 1
+          cell.state = 0
+        } else if (cell.state == 1 && neighbors > three) { // Rule 2
+          cell.state = 0
+        } else if (cell.state == 0 && neighbors == three) {
+          cell.state = 1;
+        }
+         else  { // Rule 3
+           // no change
+        }
+
+        this.graphics.graphicsData[cell.index].fillColor = (cell.state == 1) ? this.color_black : this.color_white
+
+      }
+    }
+  }
+
+  let game = new gameOfLife()
+  game.init()
+  // game.draw()
+
+  //  drawGrid()
+
+
+</script>
+</body>
+</html>

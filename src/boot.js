@@ -1,6 +1,7 @@
 var py = {
   extras: require('./extras'), // TODO: Not in mini build
-  math: require('./core/math')
+  math: require('./core/math'),
+  Color: require('./core/color').Color
 }
 
 global.py = py
